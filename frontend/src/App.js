@@ -3,16 +3,16 @@ import ListDeposits from './components/listdeposits';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import CreateDeposit from './components/CreateDeposit';
-import UpdateDeposit from './components/UpdateDeposit';
+import UpdateDeposit from './components/updateDeposit';
 import User from './components/user';
-import DetailDeposit from './components/detaildeposit';
 import './components/Layouts/styling.css';
 
+
 class App extends React.Component {
-  state ={
-    buttonVal : "createdeposit"
-  } 
-    
+  state = {
+    buttonVal: "createdeposit"
+  }
+
   render() {
     return (
       <Router>
@@ -26,10 +26,10 @@ class App extends React.Component {
           <Route path="/" exact render={() => {
             return (<h1>Welcome Home</h1>);
           }} />
-          <Route exact  strict path="/deposit" component={ListDeposits} />
+          <Route exact strict path="/deposit" component={ListDeposits} />
           <Route path="/createdeposit" component={CreateDeposit} />
-          <Route path="/updatedeposit" component={UpdateDeposit} />
-          <Route exact strict path="/deposit/:depositId" component={DetailDeposit} />
+          {/* <Route path="/updatedeposit" component={UpdateDeposit} /> */}
+          <Route exact strict path="/deposit/:depositId" component={UpdateDeposit} />
           <Route path="/user" component={User} />
         </div>
       </Router>

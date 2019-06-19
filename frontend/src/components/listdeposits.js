@@ -53,7 +53,7 @@ class ListDeposits extends React.Component {
                         </tr>)}
                     </tbody>
                 </Table>
-                <Button bsClass="custom-btn">
+                <Button bsclass="custom-btn">
                     <Link to="/createdeposit"> Create Deposit </Link>
                 </Button>
 

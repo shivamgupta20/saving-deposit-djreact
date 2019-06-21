@@ -1,8 +1,9 @@
 import React from 'react';
 import { Form, Col, Row, Button } from 'react-bootstrap';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './Layouts/styling.css';
+import { postDeposit, putDeposit, getDeposit } from '../store/actions/depositActions';
 
 class DepositForm extends React.Component {
     constructor(props) {
@@ -29,15 +30,9 @@ class DepositForm extends React.Component {
         const reqType = this.props.requestType;
         const depositId = this.props.depositId;
         if (reqType === "PUT") {
-            axios.get(`http://127.0.0.1:8000/api/deposit/${depositId}`, this.state)
-                .then(res => {
-                    this.setState({
-                        deposit: res.data
-                    })
-                })
-                .catch(err => {
-                    console.error(err);
-                })
+            this.props.getDeposit(depositId)
+
+            console.log(this, this.props.deposit)
         }
     }
 
@@ -72,17 +67,13 @@ class DepositForm extends React.Component {
         const requestType = this.props.requestType;
         const depositId = this.props.depositId;
         event.preventDefault();
-        console.log("inside submit", requestType, depositId)
         switch (requestType) {
             case 'POST':
-                axios.post('http://127.0.0.1:8000/api/deposit/', this.state.deposit)
-                    .then(res => console.log(res))
-                    .catch(err => console.error(err))
+                this.props.postDeposit(this.state.deposit);
                 break
             case 'PUT':
-                axios.put(`http://127.0.0.1:8000/api/deposit/${depositId}/`, this.state.deposit)
-                    .then(res => console.log(res))
-                    .catch(err => console.error(err))
+                this.props.putDeposit(this.state.deposit, depositId);
+
                 break
             default:
                 return (this.state.deposit)
@@ -160,4 +151,8 @@ class DepositForm extends React.Component {
         };
     }
 }
-export default DepositForm;
+const mapStateToProp = state => ({
+    deposit: state.deposit.depositItem
+})
+
+export default connect(mapStateToProp, { postDeposit, putDeposit, getDeposit })(DepositForm);

@@ -1,28 +1,28 @@
 import React from 'react';
-import axios from 'axios';
 import { Table, Button } from 'react-bootstrap';
-import { Prompt, Link } from 'react-router-dom';
+import { Link, Prompt } from 'react-router-dom';
 import './Layouts/styling.css';
+import { connect } from 'react-redux';
+import { getDeposits, delDeposits } from '../store/actions/depositActions';
 
 class ListDeposits extends React.Component {
+    componentWillMount() {
+        this.props.getDeposits();
+
+    }
     constructor(props) {
         super(props);
-        this.state = {
-            deposits: []
-        }
+        this.delDeposit = this.delDeposit.bind(this);
     }
-    componentDidMount() {
-        //const  id = this.props.params.depositId;
-        axios.get(`http://127.0.0.1:8000/api/deposit/`)
-            .then(res => {
-                this.setState({ deposits: res.data });
 
-            })
+    delDeposit(depositId) {
+        console.log(depositId);
+        //this.props.delDeposits(depositId);
     }
+
     render() {
         return (
             <div>
-
                 <Table responsive>
                     <thead>
                         <tr>
@@ -34,23 +34,25 @@ class ListDeposits extends React.Component {
                             <th>End Date</th>
                             <th>Interest</th>
                             <th>Tax</th>
-                            <th>
-                                edit/delete
-                            </th>
+                            <th>edit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.deposits.map(eachDeposit => <tr>
-                            <td>{eachDeposit.id}</td>
-                            <td>{eachDeposit.bankname}</td>
-                            <td>{eachDeposit.account_number}</td>
-                            <td>{eachDeposit.initial_amount}</td>
-                            <td>{eachDeposit.start_date}</td>
-                            <td>{eachDeposit.end_date}</td>
-                            <td>{eachDeposit.interest}</td>
-                            <td>{eachDeposit.tax}</td>
-                            <td><Link to={`/deposit/${eachDeposit.id}`}>edit</Link>/delete</td>
-                        </tr>)}
+                        {
+                            this.props.deposits.map(eachDeposit =>
+                                <tr key={eachDeposit.id}>
+                                    <td>{eachDeposit.id}</td>
+                                    <td>{eachDeposit.bankname}</td>
+                                    <td>{eachDeposit.account_number}</td>
+                                    <td>{eachDeposit.initial_amount}</td>
+                                    <td>{eachDeposit.start_date}</td>
+                                    <td>{eachDeposit.end_date}</td>
+                                    <td>{eachDeposit.interest}</td>
+                                    <td>{eachDeposit.tax}</td>
+                                    <td><Link to={`/deposit/${eachDeposit.id}`}>edit</Link>/delete</td>
+                                </tr>)
+
+                        }
                     </tbody>
                 </Table>
                 <Button bsclass="custom-btn">
@@ -61,4 +63,8 @@ class ListDeposits extends React.Component {
         );
     }
 }
-export default ListDeposits;
+
+const mapStateToProp = state => ({
+    deposits: state.deposit.depositItems
+})
+export default connect(mapStateToProp, { getDeposits, delDeposits })(ListDeposits);

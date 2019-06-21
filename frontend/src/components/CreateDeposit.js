@@ -6,8 +6,8 @@ class CreateDeposit extends React.Component {
         return (
             <div>
                 <h1> Create Deposit </h1>
-                <DepositForm  requestType ="POST" depositId=""/>
-                
+                <DepositForm requestType="POST" depositId="" />
+
             </div>
         );
     }

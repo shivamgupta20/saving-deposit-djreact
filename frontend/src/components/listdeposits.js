@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { Link, Prompt } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Layouts/styling.css';
 import { connect } from 'react-redux';
-import { getDeposits, delDeposits } from '../store/actions/depositActions';
+import { getDeposits, delDeposit } from '../store/actions/depositActions';
 
 class ListDeposits extends React.Component {
     componentWillMount() {
@@ -16,8 +16,7 @@ class ListDeposits extends React.Component {
     }
 
     delDeposit(depositId) {
-        console.log(depositId);
-        //this.props.delDeposits(depositId);
+        //console.log(depositId);
     }
 
     render() {
@@ -49,7 +48,11 @@ class ListDeposits extends React.Component {
                                     <td>{eachDeposit.end_date}</td>
                                     <td>{eachDeposit.interest}</td>
                                     <td>{eachDeposit.tax}</td>
-                                    <td><Link to={`/deposit/${eachDeposit.id}`}>edit</Link>/delete</td>
+                                    <td>
+                                        <Link to={`/deposit/${eachDeposit.id}`}>edit</Link>
+                                        /
+                                        <Link to={`/deldeposit/${eachDeposit.id}`} >delete </Link>
+                                    </td>
                                 </tr>)
 
                         }
@@ -67,4 +70,4 @@ class ListDeposits extends React.Component {
 const mapStateToProp = state => ({
     deposits: state.deposit.depositItems
 })
-export default connect(mapStateToProp, { getDeposits, delDeposits })(ListDeposits);
+export default connect(mapStateToProp, { getDeposits, delDeposit })(ListDeposits);

@@ -32,7 +32,7 @@ class DepositForm extends React.Component {
         if (reqType === "PUT") {
             this.props.getDeposit(depositId)
 
-            console.log(this, this.props.deposit)
+            console.log(this,this.props, this.props.deposit)
         }
     }
 

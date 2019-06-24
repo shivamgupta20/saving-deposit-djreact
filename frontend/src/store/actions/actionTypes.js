@@ -10,4 +10,8 @@ export const NEW_DEPOSIT = 'NEW_DEPOSIT';
 export const PUT_DEPOSIT = 'PUT_DEPOSIT';
 export const DEL_DEPOSIT = 'DEL_DEPOSIT';
 
-export const UPDATE_USER_FIELD = 'UPDATE_USER_FIELD';
+export const GET_USERS = 'GET_USERS';
+export const GET_USER = 'GET_USER';
+export const NEW_USER = 'NEW_USER';
+export const PUT_USER = 'PUT_USER';
+export const DEL_USER = 'DEL_USER';

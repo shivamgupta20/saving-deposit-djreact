@@ -6,6 +6,7 @@ class UpdateDeposit extends React.Component {
     render() {
 
         return (
+
             <div>
                 <h1> Update Deposit </h1>
                 <DepositForm requestType='PUT' depositId={this.props.match.params.depositId} />

@@ -16,7 +16,7 @@ export const getDeposits = () => dispatch => {
         )
 }
 
-export const delDeposits = (depositId) => dispatch => {
+export const delDeposit = (depositId) => dispatch => {
     axios.delete(`http://127.0.0.1:8000/api/deposit/${depositId}`)
         .then(res => dispatch({
             type: DEL_DEPOSIT,

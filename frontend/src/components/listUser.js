@@ -54,7 +54,7 @@ class ListUser extends React.Component {
                         }
                     </tbody>
                 </Table>
-                <Button bsclass="custom-btn">
+                <Button className="btn-lg btn-dark">
                     <Link to="/createuser"> Create Deposit </Link>
                 </Button>
             </div >

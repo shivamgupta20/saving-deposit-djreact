@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class DepositUser(models.Model):
@@ -24,3 +25,4 @@ class SavingDeposit(models.Model):
     end_date = models.DateField(auto_now=False)
     interest = models.IntegerField()
     tax = models.DecimalField(null = True,blank=True,max_digits=4, decimal_places=2)
+    owner = models.ForeignKey(User, related_name="DepositsUsers", on_delete = models.CASCADE, null=True)

@@ -6,3 +6,14 @@
     padding: 5px 10px;
     text-transform: uppercase;
 }
+.navlink-class{
+        color: gery;
+    
+    
+    padding: 5px 10px;
+    
+}
+.allignright{
+position: absolute;
+  right: 20px;
+}

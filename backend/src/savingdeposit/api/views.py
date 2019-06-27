@@ -1,9 +1,10 @@
 from .serializers import SavingDepositSerializer, DepositUserSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from savingdeposit.models import SavingDeposit, DepositUser
 
 class SavingDepositViewSet(viewsets.ModelViewSet):
         queryset = SavingDeposit.objects.all()
+        permission_classes = [permissions.IsAuthenticated]
         serializer_class = SavingDepositSerializer
 
 class DepositUserViewSet(viewsets.ModelViewSet):

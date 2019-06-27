@@ -18,12 +18,11 @@ class UserForm extends React.Component {
         console.log(this);
     }
     handleFormCancelSubmit() {
-        //this.state = ({ user: ({ first_name: "", last_name: "", email: "", password: "", googleId: "", facebookId: "", isEmailVerified: "", retryCount: "", emailVerificationCode: "" }) })
         this.setState({
             user:
-            ({
-                first_name: "", last_name: "", email: "", password: "", googleId: "", facebookId: "", isEmailVerified: "", retryCount: "", emailVerificationCode: ""
-            })
+                ({
+                    first_name: "", last_name: "", email: "", password: "", googleId: "", facebookId: "", isEmailVerified: "", retryCount: "", emailVerificationCode: ""
+                })
         });
     }
     handleFormSubmit() {
@@ -117,8 +116,8 @@ class UserForm extends React.Component {
                         <Form.Control name="emailVerificationCode" placeholder="Email Verification Code" onChange={this.fieldUpdate} value={this.state.emailVerificationCode} />
                     </Col>
                 </Form.Group>
-                <Button bsclass="custom-btn" onClick={this.handleFormSubmit}><Link to="/user">Save</Link></Button>
-                <Button bsclass="custom-btn" onClick={this.handleFormCancelSubmit}><Link to="/user"> Cancel </Link></Button>
+                <Button className="btn-lg btn-dark" onClick={this.handleFormSubmit}><Link to="/user">Save</Link></Button>
+                <Button className="btn-lg btn-dark" onClick={this.handleFormCancelSubmit}><Link to="/user"> Cancel </Link></Button>
             </Form>
 
         )
